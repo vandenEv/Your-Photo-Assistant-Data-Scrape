@@ -1,26 +1,19 @@
-name: Carbon Gate Check
+carbon-gate:
+  estimated_hours: 4.0
+  gpu: H100
+  region: us-east-1
 
-on:
-  pull_request:
-    types: [opened, synchronize, reopened]
+  # Emission thresholds (kgCO₂e)
+  threshold_kg_co2: 2.0
+  warn_kg_co2: 1.0
 
-permissions:
-  pull-requests: write
-  contents: write
+  # AI-powered suggestions via Crusoe Cloud
+  suggest_crusoe: true
+  auto_refactor: true
 
-jobs:
-  carbon-gate:
-    runs-on: ubuntu-latest
-    name: Check Carbon Emissions
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Run Carbon Gate
-        uses: averyhochheiser/bit-manip-hackeurope@eva/backend-api
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          api-endpoint: "https://bit-manip-hackeurope.vercel.app"
-          org-api-key: ${{ secrets.CARBON_GATE_ORG_KEY }}
-          crusoe-api-key: ${{ secrets.CRUSOE_API_KEY }}
+  security:
+    allowed_teams: []
+    max_overrides_per_month: 5
+    notify_on_override: true
+    override_permission: admin
+    require_justification: true
