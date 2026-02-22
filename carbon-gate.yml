@@ -1,0 +1,19 @@
+carbon-gate:
+  estimated_hours: 4.0
+  gpu: H100
+  region: us-east-1
+
+  # Emission thresholds (kgCO₂e)
+  threshold_kg_co2: 2.0
+  warn_kg_co2: 1.0
+
+  # AI-powered suggestions via Crusoe Cloud
+  suggest_crusoe: true
+  auto_refactor: true
+
+  security:
+    allowed_teams: []
+    max_overrides_per_month: 5
+    notify_on_override: true
+    override_permission: admin
+    require_justification: true
